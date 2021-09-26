@@ -20,8 +20,9 @@ public class License {
     private License(@NotNull LicenseBuilder builder) {
         this.licensedProduct = builder.licensedProduct;
         this.ip = builder.ip;
-        this.link = new StringBuilder(builder.ip)
-                .append("check.php?plugin=" + builder.licensedProduct + "&ip=" + builder.ip).toString();
+        this.link = "curl -X GET " + builder.link
+                .replace("{ip}", builder.ip)
+                .replace("{product}", builder.licensedProduct);
     }
 
     /**
@@ -94,8 +95,12 @@ public class License {
         }
 
         /**
-         * Add your domain until check.php
-         * (check.php isn't included)
+         * Add your domain license checker link (WebAPI)
+         *
+         * Placeholders:
+         * {ip} replacing to ip.
+         * {product} replacing to product name
+         *
          * @param link
          * @return
          */

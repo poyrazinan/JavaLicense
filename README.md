@@ -10,7 +10,8 @@ After then returns boolean about license status.
     public static void main(String... args) {
         License license = new LicenseBuilder()
                 .setProductName("Test")
-                .setLink("https://poyrazinan.com.tr/api/plugin/");
+                .setLink("https://poyrazinan.com.tr/api/plugin/check.php?plugin={product}&ip={ip}")
+                .build();
         boolean status = license.run();
         if (!status) {
             // If license couldn't found.
