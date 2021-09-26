@@ -5,8 +5,6 @@ JavaLicense uses poyrazinan/license-web-api for getting a result.
 Basically getting JSON data from a Web API and this JSON data contains status of IP and Product Name. 
 After then returns boolean about license status.
 
----
-
 ## Usage
 ```java
     public static void main(String... args) {
@@ -71,8 +69,6 @@ dependencies {
 - **Jetbrains Annotations**
   - Version: 22.0.0
   - [Github](https://github.com/JetBrains/java-annotations)
-
----
 
 ## Useful links:
 * Web API (php)
