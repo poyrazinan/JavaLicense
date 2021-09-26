@@ -1,6 +1,6 @@
 # JavaLicense | Protect your jar
 
-JavaLicense uses poyrazinan/LicenseAPI for getting a result.
+JavaLicense uses poyrazinan/license-web-api for getting a result.
 
 ---
 
