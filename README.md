@@ -1,4 +1,4 @@
-# JavaLicense | Protect your jar
+# JavaLicense
 
 JavaLicense uses poyrazinan/license-web-api for getting a result.
 
@@ -7,22 +7,22 @@ After then returns boolean about license status.
 
 ## Usage
 ```java
-    public static void main(String... args) {
-        License license = new LicenseBuilder()
-                .setProductName("Test")
-                .setLink("https://poyrazinan.com.tr/api/plugin/check.php?plugin={product}&ip={ip}")
-                .build();
-        boolean status = license.run();
-        if (!status) {
-            // If license couldn't found.
-            // Do something
-            System.out.println("License couldn't found.");
-        } else {
-            // License found and valid.
-            // Do something
-            System.out.println("License found");
-        }
+public static void main(String... args) {
+    License license = new LicenseBuilder()
+            .setProductName("Test")
+            .setLink("https://poyrazinan.com.tr/api/plugin/check.php?plugin={product}&ip={ip}")
+            .build();
+    boolean status = license.run();
+    if (!status) {
+        // If license couldn't found.
+        // Do something
+        System.out.println("License couldn't found.");
+    } else {
+        // License found and valid.
+        // Do something
+        System.out.println("License found");
     }
+}
 ```
 
 ## API
@@ -41,7 +41,7 @@ After then returns boolean about license status.
   <dependency>
     <groupId>com.github.poyrazinan</groupId>
     <artifactId>JavaLicense</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <scope>compile</scope>
   </dependency>
 </dependencies>
@@ -53,7 +53,7 @@ repositories {
 }
 
 dependencies {
-  implementation 'com.github.poyrazinan:JavaLicense:1.0.0'
+  implementation 'com.github.poyrazinan:JavaLicense:1.0.1'
 }
 ```
 

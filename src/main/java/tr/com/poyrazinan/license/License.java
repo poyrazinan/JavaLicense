@@ -75,6 +75,9 @@ public class License {
         return (boolean) new JSONObject(responseStrBuilder.toString()).get("status");
     }
 
+    /**
+     * Builder Class
+     */
     public static class LicenseBuilder {
 
         private String licensedProduct, ip, link;
