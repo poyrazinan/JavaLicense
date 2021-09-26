@@ -26,11 +26,42 @@ After then returns boolean about license status.
     }
 ```
 
+## API
+[![](https://jitpack.io/v/poyrazinan/JavaLicense.svg)](https://jitpack.io/#poyrazinan/JavaLicense)
+[![Java CI with Maven](https://github.com/poyrazinan/JavaLicense/actions/workflows/maven.yml/badge.svg)](https://github.com/poyrazinan/JavaLicense/actions/workflows/maven.yml)
+### Maven:
+```xml
+<repositories>
+  <repository>
+    <id>jitpack.io</id>
+    <url>https://jitpack.io</url>
+  </repository>
+</repositories>
+
+<dependencies>
+  <dependency>
+    <groupId>com.github.poyrazinan</groupId>
+    <artifactId>JavaLicense</artifactId>
+    <version>1.0.0</version>
+    <scope>compile</scope>
+  </dependency>
+</dependencies>
+```
+### Gradle:
+```
+repositories {
+  maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+  implementation 'com.github.poyrazinan:JavaLicense:1.0.0'
+}
+```
+
 ## Requirements:
 
 * Web API for storing licenses and check.
 * User must have CURL for license check.
-* Developed on Java 16 (Can be usable lower versions probably.)
 
 ## Dependencies
 
