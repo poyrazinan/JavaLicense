@@ -2,14 +2,12 @@
 
 JavaLicense uses poyrazinan/license-web-api for getting a result.
 
----
-
 Basically getting JSON data from a Web API and this JSON data contains status of IP and Product Name. 
 After then returns boolean about license status.
 
 ---
 
-### Usage
+## Usage
 ```java
     public static void main(String... args) {
         License license = new LicenseBuilder()
@@ -28,17 +26,13 @@ After then returns boolean about license status.
     }
 ```
 
----
-
-### Requirements:
+## Requirements:
 
 * Web API for storing licenses and check.
 * User must have CURL for license check.
 * Developed on Java 16 (Can be usable lower versions probably.)
 
----
-
-### Dependencies
+## Dependencies
 
 - **JSON**
   - Version: 20210307
@@ -49,6 +43,6 @@ After then returns boolean about license status.
 
 ---
 
-### Useful links:
+## Useful links:
 * Web API (php)
 * [Discord Bot for Licenses](https://github.com/poyrazinan/GeikPlugins-Discord-Bot)
