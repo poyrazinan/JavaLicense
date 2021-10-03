@@ -72,5 +72,5 @@ dependencies {
   - [Github](https://github.com/JetBrains/java-annotations)
 
 ## Useful links:
-* Web API (php)
+* [Web API (php)](https://github.com/poyrazinan/license-web-api)
 * [Discord Bot for Licenses](https://github.com/poyrazinan/GeikPlugins-Discord-Bot)
