@@ -7,8 +7,8 @@ After then returns boolean about license status.
 
 ## Usage
 ```java
-public static void main(String... args) {
-    License license = new LicenseBuilder()
+public static void main(String... args) throws BuilderException {
+    License license = new License.LicenseBuilder()
             .setProductName("Test")
             .setLink("https://poyrazinan.com.tr/api/plugin/check.php?plugin={product}&ip={ip}")
             .build();
