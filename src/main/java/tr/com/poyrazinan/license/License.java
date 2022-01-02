@@ -5,6 +5,7 @@ import org.jetbrains.annotations.Nullable;
 import org.json.JSONException;
 import org.json.JSONObject;
 import tr.com.poyrazinan.license.exceptions.BuilderException;
+import tr.com.poyrazinan.license.exceptions.ConnectionFailureException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,7 +21,7 @@ public class License {
     private License(@NotNull LicenseBuilder builder) {
         this.licensedProduct = builder.licensedProduct;
         this.ip = builder.ip;
-        this.link = "curl -X GET " + builder.link
+        this.link = "curl --insecure -X GET " + builder.link
                 .replace("{ip}", builder.ip)
                 .replace("{product}", builder.licensedProduct);
     }
@@ -56,23 +57,30 @@ public class License {
      * Returns status of license (boolean)
      *
      * @return
-     * @throws IOException
-     * @throws JSONException
      */
-    public boolean run() throws IOException, JSONException {
-        Process process = Runtime.getRuntime().exec(this.link);
-        InputStream inputStream = process.getInputStream();
-        BufferedReader bR = new BufferedReader(  new InputStreamReader(inputStream));
-        String line = "";
+    public boolean run() {
+        boolean status = false;
+        try {
+            Process process = Runtime.getRuntime().exec(this.link);
+            InputStream inputStream = process.getInputStream();
+            BufferedReader bR = new BufferedReader(  new InputStreamReader(inputStream));
+            String line = "";
 
-        StringBuilder responseStrBuilder = new StringBuilder();
-        while((line = bR.readLine()) != null)
-            responseStrBuilder.append(line);
+            StringBuilder responseStrBuilder = new StringBuilder();
+            while((line = bR.readLine()) != null)
+                responseStrBuilder.append(line);
 
-        inputStream.close();
-        process.destroy();
+            inputStream.close();
+            process.destroy();
 
-        return (boolean) new JSONObject(responseStrBuilder.toString()).get("status");
+            status = (boolean) new JSONObject(responseStrBuilder.toString()).get("status");
+        }
+        catch (Exception e) {
+            throw new ConnectionFailureException("An error occurred when try to connect license server.");
+        }
+        finally {
+            return status;
+        }
     }
 
     /**
@@ -156,7 +164,5 @@ public class License {
             }
             return null;
         }
-
     }
-
 }
