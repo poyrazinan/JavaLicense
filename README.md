@@ -1,30 +1,35 @@
 # JavaLicense
 
-JavaLicense uses poyrazinan/license-web-api for getting a result.
-
-Basically getting JSON data from a Web API and this JSON data contains status of IP and Product Name. 
-After then returns boolean about license status.
+JavaLicense is a license validation and management solution for your Java projects. It enables you to check, validate, and manage licenses within your Java applications.
 
 ## Usage
 ```java
 public static void main(String... args) {
-    License license = new License.LicenseBuilder()
-            .setProductName("Test")
-            .setLink("https://poyrazinan.com.tr/api/plugin/check.php?plugin={product}&ip={ip}")
-            .build();
-    // You can check is something goes wrong with license query.
-    // All you want to do is surrounding license.run() with try and catch
-    // which can cause ConnectionFailureException.
-    boolean status = license.run();
-    if (!status) {
-        // If license couldn't found.
-        // Do something
-        System.out.println("License couldn't found.");
-    } else {
-        // License found and valid.
-        // Do something
-        System.out.println("License found");
-    }
+    try {
+        // License object creation
+        License license = new License("test", "https://demo.geik.xyz/api/plugin/check.php?plugin={product}&ip={ip}");
+        // License check
+        boolean status = license.run();
+        // Checks if server has license or not
+        if (status) {
+            // Code block for license found situation
+            System.out.println("License found!");
+        }
+        else
+            // Code block for license couldn't be found situation
+            System.out.println("License couldn't be found");
+
+        // Exceptions
+        } catch (LocalMachineIpCatchException e) {
+            // When program couldn't find the host address, throws this exception
+            System.out.println("Local machine ip couldn't be find.");
+        } catch (ConnectionFailureException e) {
+            // When connection fails, throws this exception
+            System.out.println("Connection failed to remote server.");
+        } catch (ResponseCodeException e) {
+            // When response not equal to 500, throws this exception
+            System.out.println("Response code is not correct, check api server!");
+        }
 }
 ```
 
@@ -44,7 +49,7 @@ public static void main(String... args) {
   <dependency>
     <groupId>com.github.poyrazinan</groupId>
     <artifactId>JavaLicense</artifactId>
-    <version>1.1</version>
+    <version>1.2</version>
     <scope>compile</scope>
   </dependency>
 </dependencies>
@@ -56,7 +61,7 @@ repositories {
 }
 
 dependencies {
-  implementation 'com.github.poyrazinan:JavaLicense:1.1'
+  implementation 'com.github.poyrazinan:JavaLicense:1.2'
 }
 ```
 
@@ -65,18 +70,30 @@ dependencies {
 
 ## Requirements:
 
-* Web API for storing licenses and check.
-* User must have CURL for license check.
+* Web API for storing licenses and check. [Suggest you my api](https://github.com/poyrazinan/license-web-api)
+* ~~User must have CURL for license check.~~ Don't need anymore :) 
+
+## Contributions
+
+- If you'd like to provide feedback or contribute to the project, please open an issue on the GitHub repository or submit a pull request.
+
 
 ## Dependencies
 
 - **JSON**
-  - Version: 20210307
+  - Version: 20230618
   - [Official Website](https://www.json.org/json-en.html)
 - **Jetbrains Annotations**
-  - Version: 22.0.0
+  - Version: RELEASE
   - [Github](https://github.com/JetBrains/java-annotations)
+- **Lombok**
+  - Version: 1.18.26
+  - [Official Website](https://projectlombok.org/)
 
 ## Useful links:
 * [Web API (php)](https://github.com/poyrazinan/license-web-api)
 * [Discord Bot for Licenses](https://github.com/poyrazinan/GeikPlugins-Discord-Bot)
+
+## License
+
+This project is licensed under the MIT License. For more information, please see the [LICENSE](LICENSE) file.
