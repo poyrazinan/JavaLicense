@@ -36,6 +36,11 @@ public static void main(String... args) {
 ## API
 [![](https://jitpack.io/v/poyrazinan/JavaLicense.svg)](https://jitpack.io/#poyrazinan/JavaLicense)
 [![Java CI with Maven](https://github.com/poyrazinan/JavaLicense/actions/workflows/maven.yml/badge.svg)](https://github.com/poyrazinan/JavaLicense/actions/workflows/maven.yml)
+[![JavaLicense JavaDoc](https://github.com/poyrazinan/JavaLicense/actions/workflows/publish-javadoc-maven.yml/badge.svg)](https://github.com/poyrazinan/JavaLicense/actions/workflows/publish-javadoc-maven.yml)
+
+### Javadoc
+[Click](https://poyrazinan.github.io/JavaLicense/javadoc/)
+
 ### Maven:
 ```xml
 <repositories>
