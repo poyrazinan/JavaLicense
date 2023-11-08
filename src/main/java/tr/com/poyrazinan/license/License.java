@@ -8,6 +8,7 @@ import tr.com.poyrazinan.license.exceptions.ConnectionFailureException;
 import tr.com.poyrazinan.license.exceptions.LocalMachineIpCatchException;
 import tr.com.poyrazinan.license.exceptions.ResponseCodeException;
 
+import java.io.IOException;
 import java.net.*;
 import java.util.Enumeration;
 
@@ -62,12 +63,12 @@ public class License {
      * @throws ConnectionFailureException when connection fails this exception throws
      * @throws ResponseCodeException when response code is not 500 this exception throws
      */
-    public boolean run() throws ConnectionFailureException, ResponseCodeException {
+    public boolean run() throws ConnectionFailureException, ResponseCodeException, IOException {
         boolean status = false;
         JSONObject license = new Connect().requestApi(getApiLink()
             .replace("{ip}", getLicenseIp())
             .replace("{product}", getProductName()));
-        status = (boolean) license.get("status");
+        status = license.getBoolean("status");
         return status;
     }
 

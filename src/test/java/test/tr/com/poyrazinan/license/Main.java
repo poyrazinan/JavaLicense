@@ -5,6 +5,8 @@ import tr.com.poyrazinan.license.exceptions.ConnectionFailureException;
 import tr.com.poyrazinan.license.exceptions.LocalMachineIpCatchException;
 import tr.com.poyrazinan.license.exceptions.ResponseCodeException;
 
+import java.io.IOException;
+
 /**
  * @since 1.2
  * @author poyrazinan
@@ -41,6 +43,8 @@ public class Main {
             // When response not equal to 500, throws this exception
         } catch (ResponseCodeException e) {
             System.out.println("Response code is not correct, check api server!");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }
