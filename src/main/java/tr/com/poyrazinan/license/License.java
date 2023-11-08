@@ -64,16 +64,10 @@ public class License {
      */
     public boolean run() throws ConnectionFailureException, ResponseCodeException {
         boolean status = false;
-        try {
-            JSONObject license = new Connect().requestApi(getApiLink()
-                            .replace("{ip}", getLicenseIp())
-                            .replace("{product}", getProductName()));
-            status = (boolean) license.get("status");
-        } catch (ConnectionFailureException e) {
-            throw new ConnectionFailureException();
-        } catch (ResponseCodeException e) {
-            throw new ResponseCodeException(e.getMessage());
-        }
+        JSONObject license = new Connect().requestApi(getApiLink()
+            .replace("{ip}", getLicenseIp())
+            .replace("{product}", getProductName()));
+        status = (boolean) license.get("status");
         return status;
     }
 
@@ -85,14 +79,19 @@ public class License {
      */
     private String catchLocalHostIp() throws LocalMachineIpCatchException {
         try {
-            Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces();
-            while (en.hasMoreElements()) {
-                NetworkInterface i = en.nextElement();
-                for (Enumeration<InetAddress> en2 = i.getInetAddresses(); en2.hasMoreElements();) {
-                    InetAddress addr = en2.nextElement();
-                    if (!addr.isLoopbackAddress())
-                        if (addr instanceof Inet4Address)
-                            return addr.getHostAddress();
+            Enumeration interfaces = NetworkInterface.getNetworkInterfaces();
+            while (interfaces.hasMoreElements()) {
+                NetworkInterface iface = (NetworkInterface) interfaces.nextElement();
+                if (iface.isLoopback() || !iface.isUp()) {
+                    continue;
+                }
+                Enumeration addresses = iface.getInetAddresses();
+                while (addresses.hasMoreElements()) {
+                    InetAddress addr = (InetAddress) addresses.nextElement();
+                    if (addr.isLinkLocalAddress() || addr.isLoopbackAddress() || addr.isMulticastAddress()) {
+                        continue;
+                    }
+                    return addr.getHostAddress();
                 }
             }
         }

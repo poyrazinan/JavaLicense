@@ -28,6 +28,7 @@ public class Connect {
             URL url = new URL(apiUrl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
+            connection.setRequestProperty("User-Agent", "Mozilla/5.0");
 
             int responseCode = connection.getResponseCode();
 
