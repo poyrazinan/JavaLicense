@@ -53,7 +53,7 @@ public static void main(String[] args) {
   <dependency>
     <groupId>com.github.poyrazinan</groupId>
     <artifactId>JavaLicense</artifactId>
-    <version>1.3</version>
+    <version>1.4</version>
     <scope>compile</scope>
   </dependency>
 </dependencies>
@@ -65,7 +65,7 @@ repositories {
 }
 
 dependencies {
-  implementation 'com.github.poyrazinan:JavaLicense:1.3'
+  implementation 'com.github.poyrazinan:JavaLicense:1.4'
 }
 ```
 
