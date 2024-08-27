@@ -18,6 +18,5 @@ jobs:
           javadoc-branch: javadoc
           target-folder: javadoc
           java-version: 8
-          project: maven # or gradle
-          javadoc-source-folder: app/build/docs/javadoc
+          project: maven
           # subdirectories: moduleA moduleB #for subdirectories support, needs to be run with custom command
