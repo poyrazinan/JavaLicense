@@ -23,6 +23,9 @@ public class Connect {
      *
      * @param apiUrl url of request
      * @return JSONObject of status
+     * @throws IOException exception
+     * @throws JSONException exception
+     * @throws ResponseCodeException exception
      */
     public JSONObject requestApi(String apiUrl) throws IOException, JSONException, ResponseCodeException {
         URL url = new URL(apiUrl);
