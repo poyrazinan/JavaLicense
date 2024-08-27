@@ -2,7 +2,6 @@ package test.tr.com.poyrazinan.license;
 
 import tr.com.poyrazinan.license.License;
 import tr.com.poyrazinan.license.exceptions.ConnectionFailureException;
-import tr.com.poyrazinan.license.exceptions.LocalMachineIpCatchException;
 import tr.com.poyrazinan.license.exceptions.ResponseCodeException;
 
 import java.io.IOException;
@@ -21,11 +20,11 @@ public class Main {
     public static void main(String[] args) {
         try {
             // License object creation
-            License license = new License("test", "https://demo.geik.xyz/api/plugin/check.php?plugin={product}&ip={ip}");
+            License license = new License("dailyreward", "https://geik.xyz/app/api/license2.php?product={product}");
             // License check
-            boolean status = license.run();
+            License.LicenseResponse status = license.run();
             // Checks if server has license or not
-            if (status) {
+            if (status.isHasLicense()) {
                 // Code block for license found situation
                 System.out.println("License found!");
             }
@@ -34,9 +33,6 @@ public class Main {
                 System.out.println("License couldn't be found");
 
         // Exceptions
-        } catch (LocalMachineIpCatchException e) {
-            // When program couldn't find the host address, throws this exception
-            System.out.println("Local machine ip couldn't be find.");
         } catch (ConnectionFailureException e) {
             // When connection fails, throws this exception
             System.out.println("Connection failed to remote server.");

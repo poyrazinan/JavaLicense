@@ -4,32 +4,31 @@ JavaLicense is a license validation and management solution for your Java projec
 
 ## Usage
 ```java
-public static void main(String... args) {
-    try {
-        // License object creation
-        License license = new License("test", "https://demo.geik.xyz/api/plugin/check.php?plugin={product}&ip={ip}");
-        // License check
-        boolean status = license.run();
-        // Checks if server has license or not
-        if (status) {
-            // Code block for license found situation
-            System.out.println("License found!");
-        }
-        else
-            // Code block for license couldn't be found situation
-            System.out.println("License couldn't be found");
+public static void main(String[] args) {
+  try {
+    // License object creation
+    License license = new License("dailyreward", "https://geik.xyz/app/api/license2.php?product={product}");
+    // License check
+    License.LicenseResponse status = license.run();
+    // Checks if server has license or not
+    if (status.isHasLicense()) {
+      // Code block for license found situation
+      System.out.println("License found!");
+    }
+    else
+      // Code block for license couldn't be found situation
+      System.out.println("License couldn't be found");
 
-        // Exceptions
-        } catch (LocalMachineIpCatchException e) {
-            // When program couldn't find the host address, throws this exception
-            System.out.println("Local machine ip couldn't be find.");
-        } catch (ConnectionFailureException e) {
-            // When connection fails, throws this exception
-            System.out.println("Connection failed to remote server.");
-        } catch (ResponseCodeException e) {
-            // When response not equal to 500, throws this exception
-            System.out.println("Response code is not correct, check api server!");
-        }
+    // Exceptions
+  } catch (ConnectionFailureException e) {
+    // When connection fails, throws this exception
+    System.out.println("Connection failed to remote server.");
+    // When response not equal to 500, throws this exception
+  } catch (ResponseCodeException e) {
+    System.out.println("Response code is not correct, check api server!");
+  } catch (IOException e) {
+    throw new RuntimeException(e);
+  }
 }
 ```
 
@@ -54,7 +53,7 @@ public static void main(String... args) {
   <dependency>
     <groupId>com.github.poyrazinan</groupId>
     <artifactId>JavaLicense</artifactId>
-    <version>1.2</version>
+    <version>1.3</version>
     <scope>compile</scope>
   </dependency>
 </dependencies>
@@ -66,7 +65,7 @@ repositories {
 }
 
 dependencies {
-  implementation 'com.github.poyrazinan:JavaLicense:1.2'
+  implementation 'com.github.poyrazinan:JavaLicense:1.3'
 }
 ```
 
@@ -76,7 +75,6 @@ dependencies {
 ## Requirements:
 
 * Web API for storing licenses and check. [Suggest you my api](https://github.com/poyrazinan/license-web-api)
-* ~~User must have CURL for license check.~~ Don't need anymore :) 
 
 ## Contributions
 
@@ -86,7 +84,7 @@ dependencies {
 ## Dependencies
 
 - **JSON**
-  - Version: 20230618
+  - Version: 20231013
   - [Official Website](https://www.json.org/json-en.html)
 - **Jetbrains Annotations**
   - Version: RELEASE

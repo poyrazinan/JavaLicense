@@ -2,7 +2,6 @@ package tr.com.poyrazinan.license;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import tr.com.poyrazinan.license.exceptions.ConnectionFailureException;
 import tr.com.poyrazinan.license.exceptions.ResponseCodeException;
 
 import java.io.BufferedReader;
